@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.SplashScreenSample" parent="Theme.SplashScreen">
+
+        <item name="windowSplashScreenBackground">@color/teal_700</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_baseline_assignment_turned_in_24</item>
+        <item name="windowSplashScreenAnimationDuration">1000</item>
+        <item name="postSplashScreenTheme">@style/Theme.ToDoApp</item>
+
+
+    </style>
+
+</resources>
