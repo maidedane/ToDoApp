@@ -3,9 +3,9 @@ package com.maidedane.todoapp.data.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity
+@Entity(tableName = "todoList")
 class Todo(
-    val todo:String,
+    val title:String,
     val description:String,
 
     @PrimaryKey(autoGenerate = true)
