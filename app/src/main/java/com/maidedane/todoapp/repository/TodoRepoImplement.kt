@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 class TodoRepoImplement(
     private val dao: TodoDao
-) : TodoRepo {
+) : TodoRepository {
     override fun getTodo(): Flow<List<Todo>> {
         return dao.getTodo()
     }
@@ -15,11 +15,11 @@ class TodoRepoImplement(
         return dao.getTodoById(id)
     }
 
-    override suspend fun insertTodo(todoList: Todo) {
-        dao.insertTodo(todoList)
+    override suspend fun insertTodo(todo: Todo) {
+        dao.insertTodo(todo)
     }
 
-    override suspend fun deleteTodo(todoList: Todo) {
-        dao.deleteTodo(todoList)
+    override suspend fun deleteTodo(todo: Todo) {
+        dao.deleteTodo(todo)
     }
 }

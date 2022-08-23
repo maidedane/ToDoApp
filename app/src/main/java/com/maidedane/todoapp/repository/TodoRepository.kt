@@ -3,7 +3,7 @@ package com.maidedane.todoapp.repository
 import com.maidedane.todoapp.data.model.Todo
 import kotlinx.coroutines.flow.Flow
 
-interface TodoRepo {
+interface TodoRepository {
 
     fun getTodo(): Flow<List<Todo>>
 
