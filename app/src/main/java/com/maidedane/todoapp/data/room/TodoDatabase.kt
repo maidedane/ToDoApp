@@ -14,7 +14,7 @@ import com.maidedane.todoapp.data.model.Todo
 
 abstract class TodoDatabase : RoomDatabase() {
 
-    abstract val todoDao: TodoDao
+    abstract fun todoDao(): TodoDao
 
     //Singleton mantığı
 
