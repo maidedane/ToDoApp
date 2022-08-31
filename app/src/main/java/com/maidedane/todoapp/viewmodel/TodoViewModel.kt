@@ -1,16 +1,16 @@
 package com.maidedane.todoapp.viewmodel
 
-import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.maidedane.todoapp.data.model.Todo
-import com.maidedane.todoapp.repository.TodoRepository
+import com.maidedane.todoapp.repository.TodoRepoImplement
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+
 @HiltViewModel
-class TodoViewModel @Inject constructor(private val repository: TodoRepository) :
+class TodoViewModel @Inject constructor(private val repositoryImplement: TodoRepoImplement) :
     ViewModel() {
 
 
@@ -19,7 +19,7 @@ class TodoViewModel @Inject constructor(private val repository: TodoRepository) 
 
         val todo = Todo(title = title, description = description)
 
-        repository.insertTodo(todo)
+        repositoryImplement.insertTodo(todo)
 
 
     }

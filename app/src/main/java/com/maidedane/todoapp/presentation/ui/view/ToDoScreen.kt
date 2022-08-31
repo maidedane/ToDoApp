@@ -9,6 +9,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.maidedane.todoapp.data.room.TodoDao
 import com.maidedane.todoapp.presentation.ui.view.component.DescriptionTextField
@@ -23,11 +24,10 @@ import com.maidedane.todoapp.viewmodel.TodoViewModel
 @Composable
 fun ToDoScreen(
     navController: NavController,
-    viewModel: TodoViewModel = hiltViewModel()
+    viewModel: TodoViewModel= hiltViewModel()
 ) {
 
     val context = LocalContext.current
-
 
     val myTitle = remember {
         mutableStateOf("")
@@ -36,7 +36,6 @@ fun ToDoScreen(
     val myDescription = remember {
         mutableStateOf("")
     }
-
 
 
     Column(

@@ -1,6 +1,7 @@
 package com.maidedane.todoapp.repository
 
 import com.maidedane.todoapp.data.model.Todo
+import dagger.Provides
 import kotlinx.coroutines.flow.Flow
 
 interface TodoRepository {

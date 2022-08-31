@@ -45,9 +45,11 @@ android {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
-
     hilt {
         enableAggregatingTask = true
+    }
+    kapt {
+        correctErrorTypes = true
     }
 }
 
@@ -88,4 +90,5 @@ dependencies {
     //Dagger-Hilt
     implementation("com.google.dagger:hilt-android:2.42")
     kapt("com.google.dagger:hilt-android-compiler:2.42")
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
 }
