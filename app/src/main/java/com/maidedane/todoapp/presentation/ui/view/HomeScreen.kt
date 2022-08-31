@@ -1,4 +1,4 @@
-package com.maidedane.todoapp.ui.view
+package com.maidedane.todoapp.presentation.ui.view
 
 
 import androidx.compose.foundation.layout.*
@@ -9,8 +9,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.navigation.NavController
-import com.maidedane.todoapp.ui.view.component.AddButton
-import com.maidedane.todoapp.ui.view.component.AppBar
+import com.maidedane.todoapp.presentation.ui.view.component.AddButton
+import com.maidedane.todoapp.presentation.ui.view.component.AppBar
 
 
 @Composable

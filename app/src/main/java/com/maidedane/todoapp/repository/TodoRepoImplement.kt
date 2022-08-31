@@ -4,12 +4,12 @@ import com.maidedane.todoapp.data.model.Todo
 import com.maidedane.todoapp.data.room.TodoDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class TodoRepoImplement(
+class TodoRepoImplement @Inject constructor(private val dao: TodoDao)
 
-    private val dao: TodoDao,
 
-    ) : TodoRepository {
+    : TodoRepository {
     override fun getTodo(): Flow<List<Todo>> {
         Dispatchers.IO.apply { return dao.getTodo() }
 

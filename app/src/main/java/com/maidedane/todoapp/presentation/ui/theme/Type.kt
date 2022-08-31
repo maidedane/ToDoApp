@@ -1,4 +1,4 @@
-package com.maidedane.todoapp.ui.theme
+package com.maidedane.todoapp.presentation.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

@@ -1,4 +1,4 @@
-package com.maidedane.todoapp.ui.view.component
+package com.maidedane.todoapp.presentation.ui.view.component
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height

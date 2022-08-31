@@ -1,18 +1,18 @@
-package com.maidedane.todoapp
+package com.maidedane.todoapp.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import com.maidedane.todoapp.nav.TodoNavHost
-import com.maidedane.todoapp.ui.theme.ToDoAppTheme
-import com.maidedane.todoapp.ui.view.HomeScreen
-import com.maidedane.todoapp.ui.view.ToDoScreen
+import com.maidedane.todoapp.presentation.ui.theme.ToDoAppTheme
+import com.maidedane.todoapp.viewmodel.TodoViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         installSplashScreen()
@@ -20,7 +20,9 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             ToDoAppTheme {
+
                 TodoNavHost()
+
             }
         }
     }

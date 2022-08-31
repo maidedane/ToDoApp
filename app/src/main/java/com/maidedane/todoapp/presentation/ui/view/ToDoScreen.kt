@@ -1,5 +1,4 @@
-package com.maidedane.todoapp.ui.view
-
+package com.maidedane.todoapp.presentation.ui.view
 
 import android.widget.Toast
 import androidx.compose.foundation.background
@@ -10,24 +9,25 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import com.maidedane.todoapp.data.model.Todo
-import com.maidedane.todoapp.ui.view.component.DescriptionTextField
-import com.maidedane.todoapp.ui.view.component.Headline
-import com.maidedane.todoapp.ui.view.component.SaveButton
-import com.maidedane.todoapp.ui.view.component.TitleTextField
+import com.maidedane.todoapp.data.room.TodoDao
+import com.maidedane.todoapp.presentation.ui.view.component.DescriptionTextField
+import com.maidedane.todoapp.presentation.ui.view.component.Headline
+import com.maidedane.todoapp.presentation.ui.view.component.SaveButton
+import com.maidedane.todoapp.presentation.ui.view.component.TitleTextField
+import com.maidedane.todoapp.repository.TodoRepoImplement
+import com.maidedane.todoapp.repository.TodoRepository
 import com.maidedane.todoapp.viewmodel.TodoViewModel
 
 
 @Composable
 fun ToDoScreen(
-    navController: NavController
-    ) {
+    navController: NavController,
+    viewModel: TodoViewModel = hiltViewModel()
+) {
 
     val context = LocalContext.current
 
-    val viewModel= TodoViewModel(context =context )
 
     val myTitle = remember {
         mutableStateOf("")

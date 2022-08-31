@@ -4,8 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.maidedane.todoapp.ui.view.HomeScreen
-import com.maidedane.todoapp.ui.view.ToDoScreen
+import com.maidedane.todoapp.presentation.ui.view.HomeScreen
+import com.maidedane.todoapp.presentation.ui.view.ToDoScreen
 
 
 
