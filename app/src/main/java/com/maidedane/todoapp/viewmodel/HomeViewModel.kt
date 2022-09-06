@@ -1,31 +1,30 @@
-/*package com.maidedane.todoapp.viewmodel
+package com.maidedane.todoapp.viewmodel
 
+import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.maidedane.todoapp.data.model.Todo
-import com.maidedane.todoapp.repository.TodoRepository
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
+import com.maidedane.todoapp.repository.TodoRepoImplement
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class HomeViewModel(private val todoRepository: TodoRepository) : ViewModel() {
+@HiltViewModel
+class HomeViewModel @Inject constructor(
+    private val repositoryImplement: TodoRepoImplement
+) : ViewModel() {
 
-    private val _state = MutableStateFlow(HomeViewState())
-    val state: StateFlow<HomeViewState>
-        get() = _state
+    private val _state = mutableStateOf(HomeState())
+    val state: State<HomeState> = _state
 
-    val doList = todoRepository.getTodo()
-
-
-    data class HomeViewState(
-
-        val doList: List<Todo> = emptyList(),
-    )
-
-    fun delete(todo:Todo)=viewModelScope.launch {
-        todoRepository.deleteTodo(todo)
+    init {
+        viewModelScope.launch {
+            repositoryImplement.getTodo().collect { todoList ->
+                _state.value = HomeState(todoList)
+            }
+        }
     }
 
-
-
-}*/
+    data class HomeState(val todo: List<Todo> = emptyList())
+}

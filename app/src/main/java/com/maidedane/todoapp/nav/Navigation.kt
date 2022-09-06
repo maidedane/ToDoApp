@@ -7,25 +7,14 @@ import androidx.navigation.compose.rememberNavController
 import com.maidedane.todoapp.presentation.ui.view.HomeScreen
 import com.maidedane.todoapp.presentation.ui.view.ToDoScreen
 
-
-
 @Composable
 fun TodoNavHost() {
     val navController = rememberNavController()
-
-
     NavHost(
         navController = navController,
-        startDestination = "home_screen/{firstTitle}"
+        startDestination = "home_screen"
     ) {
-        composable("home_screen/{firstTitle}", content = { HomeScreen(
-            navController = navController,
-            titleFromUser = it.arguments?.getString("firstTitle")
-        )
-        })
-
-        composable("to_do_screen", content = { ToDoScreen(navController = navController) })
-
+        composable("home_screen") { HomeScreen(navController = navController) }
+        composable("to_do_screen") { ToDoScreen(navController = navController) }
     }
-
 }

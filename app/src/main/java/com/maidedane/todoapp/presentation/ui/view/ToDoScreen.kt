@@ -11,15 +11,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.maidedane.todoapp.data.room.TodoDao
-import com.maidedane.todoapp.presentation.ui.view.component.DescriptionTextField
-import com.maidedane.todoapp.presentation.ui.view.component.Headline
-import com.maidedane.todoapp.presentation.ui.view.component.SaveButton
-import com.maidedane.todoapp.presentation.ui.view.component.TitleTextField
-import com.maidedane.todoapp.repository.TodoRepoImplement
-import com.maidedane.todoapp.repository.TodoRepository
+import com.maidedane.todoapp.presentation.ui.view.component.*
 import com.maidedane.todoapp.viewmodel.TodoViewModel
-
 
 @Composable
 fun ToDoScreen(
@@ -36,7 +29,6 @@ fun ToDoScreen(
     val myDescription = remember {
         mutableStateOf("")
     }
-
 
     Column(
         modifier = Modifier
@@ -63,9 +55,12 @@ fun ToDoScreen(
 
                 viewModel.insert(title = myTitle.value, description = myDescription.value)
 
-                navController.navigate("home_screen/${myTitle.value}")
+                navController.navigate("home_screen")
                 Toast.makeText(context, "Saved!", Toast.LENGTH_LONG).show()
             }
         })
+
+
+
     }
 }
