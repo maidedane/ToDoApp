@@ -17,7 +17,7 @@ import com.maidedane.todoapp.viewmodel.TodoViewModel
 @Composable
 fun ToDoScreen(
     navController: NavController,
-    viewModel: TodoViewModel= hiltViewModel()
+    viewModel: TodoViewModel = hiltViewModel()
 ) {
 
     val context = LocalContext.current
@@ -51,16 +51,16 @@ fun ToDoScreen(
 
                 Toast.makeText(context, "Fields Are Empty!", Toast.LENGTH_LONG).show()
 
+            } else if (myDescription.value.isEmpty()) {
+
+                Toast.makeText(context, "Fields Are Empty!", Toast.LENGTH_LONG).show()
+
             } else {
 
                 viewModel.insert(title = myTitle.value, description = myDescription.value)
-
                 navController.navigate("home_screen")
                 Toast.makeText(context, "Saved!", Toast.LENGTH_LONG).show()
             }
         })
-
-
-
     }
 }
