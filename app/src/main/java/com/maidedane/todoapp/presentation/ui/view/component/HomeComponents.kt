@@ -14,7 +14,9 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.maidedane.todoapp.viewmodel.HomeViewModel
 
 @Composable
 fun AppBar() {
@@ -52,7 +54,13 @@ fun AddButton(navController: NavController) {
 }
 
 @Composable
-fun HomeCard(title: String, description: String) {
+fun HomeCard(
+    title: String,
+    description: String,
+    id: Int,
+    navController: NavController,
+    viewModel: HomeViewModel = hiltViewModel()
+) {
 
     Card(
         modifier = Modifier
@@ -78,7 +86,7 @@ fun HomeCard(title: String, description: String) {
                 Text(text = description, style = MaterialTheme.typography.body2)
             }
             IconButton(
-                onClick = {},
+                onClick = { navController.navigate("edit_screen/${id}") },
                 modifier = Modifier
                     .size(20.dp)
             ) {

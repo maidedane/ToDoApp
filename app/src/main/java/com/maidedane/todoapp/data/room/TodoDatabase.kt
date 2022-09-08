@@ -16,8 +16,6 @@ abstract class TodoDatabase : RoomDatabase() {
 
     abstract fun todoDao(): TodoDao
 
-    //Singleton mantığı
-
     companion object {
 
         @Volatile

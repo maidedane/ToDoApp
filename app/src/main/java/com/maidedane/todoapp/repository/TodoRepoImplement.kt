@@ -19,6 +19,10 @@ class TodoRepoImplement @Inject constructor(private val dao: TodoDao) : TodoRepo
         Dispatchers.IO.apply { dao.insertTodo(todo) }
     }
 
+    override suspend fun updateTodo(todo: Todo) {
+        Dispatchers.IO.apply { dao.updateTodo(todo) }
+    }
+
     override suspend fun deleteTodo(todo: Todo) {
         Dispatchers.IO.apply { dao.deleteTodo(todo) }
     }

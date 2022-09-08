@@ -9,18 +9,19 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 
+
 @Composable
-fun Headline() {
+fun EditHeadline() {
 
     Text(
-        text = "Add New To Do Task",
+        text = "Edit To Your Task",
         fontSize = MaterialTheme.typography.h5.fontSize,
         fontWeight = FontWeight.Bold
     )
 }
 
 @Composable
-fun TitleTextField(string: String, function: (String) -> Unit) {
+fun EditTitle(string: String, function: (String) -> Unit) {
 
     OutlinedTextField(
         value = string,
@@ -40,7 +41,7 @@ fun TitleTextField(string: String, function: (String) -> Unit) {
 }
 
 @Composable
-fun DescriptionTextField(string: String, function: (String) -> Unit) {
+fun EditDescription(string: String, function: (String) -> Unit) {
 
     OutlinedTextField(
         value = string,
@@ -59,11 +60,10 @@ fun DescriptionTextField(string: String, function: (String) -> Unit) {
 }
 
 @Composable
-fun SaveButton(onClick: () -> Unit) {
+fun EditSaveButton(onClick: () -> Unit) {
 
     OutlinedButton(
         colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.primary),
-
         onClick = onClick,
         modifier = Modifier
             .fillMaxWidth()
@@ -78,3 +78,20 @@ fun SaveButton(onClick: () -> Unit) {
     }
 }
 
+@Composable
+fun EditCancelButton(onClick: () -> Unit) {
+
+    OutlinedButton(
+        onClick = onClick,
+        colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.primary),
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(50.dp)
+    ) {
+        Text(
+            text = "Cancel",
+            fontSize = MaterialTheme.typography.h5.fontSize,
+            fontWeight = FontWeight.Bold
+        )
+    }
+}

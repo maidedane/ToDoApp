@@ -38,7 +38,9 @@ fun HomeScreen(
             items(todoState.todo) { todo ->
                 HomeCard(
                     title = todo.title,
-                    description = todo.description
+                    description = todo.description,
+                    navController=navController,
+                    id = todo.id
                 )
             }
         }
