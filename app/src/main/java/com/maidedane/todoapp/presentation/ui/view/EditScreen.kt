@@ -2,12 +2,10 @@ package com.maidedane.todoapp.presentation.ui.view
 
 import android.widget.Toast
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -18,6 +16,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.maidedane.todoapp.presentation.ui.view.component.*
 import com.maidedane.todoapp.viewmodel.EditViewModel
+import kotlinx.coroutines.runBlocking
 
 @Composable
 fun EditScreen(
@@ -28,6 +27,21 @@ fun EditScreen(
     val context = LocalContext.current
 
     val editState = viewModel.state.value
+
+    val editTitle = remember {
+        mutableStateOf(editState.todo?.title)
+    }
+
+    val editDescription = remember {
+        mutableStateOf(editState.todo?.description)
+    }
+
+    LaunchedEffect(key1 = null) {
+
+        viewModel.getTodo(todoId)
+        editTitle.value = editState.todo?.title
+        editDescription.value = editState.todo?.description
+    }
 
     Column(
         modifier = Modifier
@@ -40,29 +54,41 @@ fun EditScreen(
 
         EditHeadline()
 
-        EditTitle(string = todoId.toString()) { }
+        EditTitle(string = editTitle.value.toString()) { editTitle.value = it }
 
-        // EditDescription(string =) { }
+        EditDescription(string = editDescription.value.toString()) {
+            editDescription.value = it
+        }
 
-        EditSaveButton(onClick = {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceEvenly
+        ) {
+            EditSaveButton(onClick = {
 
-            if (editState.todo.isEmpty()) {
+                if (editTitle.value.isNullOrEmpty()) {
 
-                Toast.makeText(context, "Fields Are Empty!", Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, "Fields Are Empty!", Toast.LENGTH_LONG).show()
 
-            } else if (editState.todo.isEmpty()) {
+                } else if (editDescription.value.isNullOrEmpty()) {
 
-                Toast.makeText(context, "Fields Are Empty!", Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, "Fields Are Empty!", Toast.LENGTH_LONG).show()
 
-            } else {
+                } else {
+
+                    viewModel.update(editTitle.value.toString(), editDescription.value.toString())
+                    navController.navigate("home_screen")
+                    Toast.makeText(context, "Edited!", Toast.LENGTH_LONG).show()
+                }
+            })
+
+            EditCancelButton(onClick = {
+
+                viewModel.delete()
                 navController.navigate("home_screen")
-                Toast.makeText(context, "Edited!", Toast.LENGTH_LONG).show()
-            }
-        })
+            })
+        }
 
-        EditCancelButton(onClick = {
-
-            navController.navigate("home_screen")
-        })
     }
 }

@@ -7,21 +7,35 @@ import androidx.lifecycle.viewModelScope
 import com.maidedane.todoapp.data.model.Todo
 import com.maidedane.todoapp.repository.TodoRepoImplement
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 @HiltViewModel
-class EditViewModel @Inject constructor(private val repoImplement: TodoRepoImplement) :
-    ViewModel() {
+class EditViewModel @Inject constructor(
+    private val repoImplement: TodoRepoImplement
+) : ViewModel() {
 
     private val _state = mutableStateOf(EditState())
     val state: State<EditState> = _state
 
-   fun update(title:String,description:String)=viewModelScope.launch {
-       val todo=Todo(title,description)
-       repoImplement.updateTodo(todo)
-   }
+    fun getTodo(id: Int) {
+        runBlocking {
+            _state.value.todo = repoImplement.getTodoById(id)
+        }
+    }
 
-    data class EditState(val todo: List<Todo> = emptyList())
+    fun update(title: String, description: String) = runBlocking {
+
+        val todo = _state.value.todo?.let { Todo(title, description,isEdited = true, it.id ) }
+        if (todo != null) {
+            repoImplement.updateTodo(todo)
+        }
+    }
+
+    fun delete() = viewModelScope.launch {
+        _state.value.todo?.let { repoImplement.deleteTodo(it) }
+    }
+
+    data class EditState(var todo: Todo? = null)
 }

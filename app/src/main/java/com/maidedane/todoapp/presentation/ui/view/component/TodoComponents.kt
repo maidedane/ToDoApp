@@ -69,7 +69,6 @@ fun SaveButton(onClick: () -> Unit) {
             .fillMaxWidth()
             .height(50.dp)
     ) {
-
         Text(
             text = "Save",
             fontSize = MaterialTheme.typography.h5.fontSize,

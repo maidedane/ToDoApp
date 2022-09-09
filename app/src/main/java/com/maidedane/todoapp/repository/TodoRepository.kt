@@ -5,7 +5,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface TodoRepository {
 
-
     fun getTodo(): Flow<List<Todo>>
 
     suspend fun getTodoById(id: Int): Todo?

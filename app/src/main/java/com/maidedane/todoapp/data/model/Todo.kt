@@ -5,9 +5,10 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "todoList")
 class Todo(
-    val title: String,
-    val description: String,
+    var title: String,
+    var description: String,
+    var isEdited: Boolean = false,
 
     @PrimaryKey(autoGenerate = true)
-    val id: Int = 0
+val id: Int = 0
 )

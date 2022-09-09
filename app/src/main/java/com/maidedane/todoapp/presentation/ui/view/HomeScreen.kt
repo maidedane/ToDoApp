@@ -28,7 +28,8 @@ fun HomeScreen(
             .fillMaxWidth(),
         topBar = { AppBar() },
         floatingActionButton = { AddButton(navController = navController) },
-    ) { padding -> padding
+    ) { padding ->
+        padding
 
         LazyColumn(
             modifier = Modifier
@@ -39,8 +40,9 @@ fun HomeScreen(
                 HomeCard(
                     title = todo.title,
                     description = todo.description,
-                    navController=navController,
-                    id = todo.id
+                    navController = navController,
+                    id = todo.id,
+                    edit = todo.isEdited
                 )
             }
         }

@@ -14,9 +14,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.maidedane.todoapp.viewmodel.HomeViewModel
 
 @Composable
 fun AppBar() {
@@ -58,10 +56,9 @@ fun HomeCard(
     title: String,
     description: String,
     id: Int,
-    navController: NavController,
-    viewModel: HomeViewModel = hiltViewModel()
+    edit: Boolean,
+    navController: NavController
 ) {
-
     Card(
         modifier = Modifier
             .padding(10.dp)
@@ -85,18 +82,34 @@ fun HomeCard(
                 Text(text = title, style = MaterialTheme.typography.h6)
                 Text(text = description, style = MaterialTheme.typography.body2)
             }
-            IconButton(
-                onClick = { navController.navigate("edit_screen/${id}") },
-                modifier = Modifier
-                    .size(20.dp)
+            Column(
+                horizontalAlignment = Alignment.End,
+                verticalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier.padding(horizontal = 5.dp)
             ) {
-                Icon(
-                    imageVector = Icons.Filled.Edit,
-                    contentDescription = "",
-                    tint = Color.Black
-                )
+                IconButton(
+                    onClick = { navController.navigate("edit_screen/${id}") },
+                    modifier = Modifier
+                        .size(20.dp)
+                ) {
+                    Icon(
+                        imageVector = Icons.Filled.Edit,
+                        contentDescription = "",
+                        tint = Color.Black
+                    )
+                }
+                Spacer(modifier = Modifier.size(55.dp))
+                if (edit) {
+                    Text(
+                        text = "edited",
+                        fontSize = MaterialTheme.typography.body2.fontSize,
+                        color = Color.Red
+                    )
+                }
             }
         }
     }
 }
+
+
 

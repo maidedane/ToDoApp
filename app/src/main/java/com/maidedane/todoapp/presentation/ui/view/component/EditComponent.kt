@@ -2,6 +2,7 @@ package com.maidedane.todoapp.presentation.ui.view.component
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -14,7 +15,7 @@ import androidx.compose.ui.unit.dp
 fun EditHeadline() {
 
     Text(
-        text = "Edit To Your Task",
+        text = "Edit Your Task",
         fontSize = MaterialTheme.typography.h5.fontSize,
         fontWeight = FontWeight.Bold
     )
@@ -66,8 +67,8 @@ fun EditSaveButton(onClick: () -> Unit) {
         colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.primary),
         onClick = onClick,
         modifier = Modifier
-            .fillMaxWidth()
             .height(50.dp)
+            .width(150.dp)
     ) {
 
         Text(
@@ -85,11 +86,11 @@ fun EditCancelButton(onClick: () -> Unit) {
         onClick = onClick,
         colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.primary),
         modifier = Modifier
-            .fillMaxWidth()
             .height(50.dp)
+            .width(150.dp)
     ) {
         Text(
-            text = "Cancel",
+            text = "Delete",
             fontSize = MaterialTheme.typography.h5.fontSize,
             fontWeight = FontWeight.Bold
         )
