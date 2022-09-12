@@ -11,7 +11,7 @@ class TodoRepoImplement @Inject constructor(private val dao: TodoDao) : TodoRepo
         Dispatchers.IO.apply { return dao.getTodo() }
     }
 
-    override suspend fun getTodoById(id: Int): Todo? {
+    override suspend fun getTodoById(id: Int): Todo {
         Dispatchers.IO.apply { return dao.getTodoById(id) }
     }
 
